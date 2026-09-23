@@ -283,7 +283,7 @@ class Component extends DCLogic {
           name: '', when: '', desc: '', slot: '', tags: [], tools: [], steps: [],
           lbl0: '', lbl1: '', lbl2: '', lbl3: '', problem: '', role: '', impact: '',
           slotId: i0 === 5 ? 'ares-proj-6b' : 'ares-proj-' + (i0 + 1),
-          src: ['assets/proj-pos.png', 'assets/proj-wed.png', 'assets/proj-kodomo.png', 'assets/proj-finance.png', 'assets/proj-logistics.png', 'assets/nfc-card.png'][i0]
+          src: ['assets/proj-pos.webp', 'assets/proj-wed.webp', 'assets/proj-kodomo.png', 'assets/proj-finance.webp', 'assets/proj-logistics.webp', 'assets/nfc-card.webp'][i0]
         },
         others: [],
         all: [],
@@ -303,7 +303,7 @@ class Component extends DCLogic {
         name: row[0], when: row[1], slot: row[2], desc: row[3],
         tags: row[4] || [], tools: row[5] || [],
         slotId: i === 5 ? 'ares-proj-6b' : 'ares-proj-' + (i + 1),
-        src: ['assets/proj-pos.png', 'assets/proj-wed.png', 'assets/proj-kodomo.png', 'assets/proj-finance.png', 'assets/proj-logistics.png', 'assets/nfc-card.png'][i],
+        src: ['assets/proj-pos.webp', 'assets/proj-wed.webp', 'assets/proj-kodomo.png', 'assets/proj-finance.webp', 'assets/proj-logistics.webp', 'assets/nfc-card.webp'][i],
         lbl0: labels[0], lbl1: labels[1], lbl2: labels[2], lbl3: labels[3],
         problem: det[0], role: det[1], impact: det[3],
         steps: (det[2] || []).map((t, k) => ({ n: '0' + (k + 1), text: t }))
@@ -316,7 +316,7 @@ class Component extends DCLogic {
         name: r[0], when: r[1], desc: r[3], tags: r[4] || [],
         href: 'Project Detail.dc.html?p=' + (k + 1) + '&lang=' + lang,
         slotId: k === 5 ? 'ares-proj-6b' : 'ares-proj-' + (k + 1),
-        src: ['assets/proj-pos.png', 'assets/proj-wed.png', 'assets/proj-kodomo.png', 'assets/proj-finance.png', 'assets/proj-logistics.png', 'assets/nfc-card.png'][k]
+        src: ['assets/proj-pos.webp', 'assets/proj-wed.webp', 'assets/proj-kodomo.png', 'assets/proj-finance.webp', 'assets/proj-logistics.webp', 'assets/nfc-card.webp'][k]
       })),
       prev: (() => { const k = (i + L.projects.length - 1) % L.projects.length; return { name: L.projects[k][0], href: 'Project Detail.dc.html?p=' + (k + 1) + '&lang=' + lang }; })(),
       next: (() => { const k = (i + 1) % L.projects.length; return { name: L.projects[k][0], href: 'Project Detail.dc.html?p=' + (k + 1) + '&lang=' + lang }; })()

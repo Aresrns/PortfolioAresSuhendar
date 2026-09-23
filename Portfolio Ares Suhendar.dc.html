@@ -180,7 +180,7 @@
       <div style="display: grid; grid-template-columns: {{ heroMediaCols }}; gap: 10px; align-items: stretch; min-width: 0; position: relative; z-index: 1;">
         <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
           <div style="position: relative; flex: 1; min-height: {{ photoMinH }}; max-height: {{ photoMaxH }}; display: flex; align-items: center; justify-content: center;">
-            <image-slot id="ares-hero-photo" shape="rect" fit="contain" placeholder="{{ t.photoSlot }}" style="width: 100%; height: 100%; aspect-ratio: {{ photoRatio }}; filter: none; box-shadow: none;"></image-slot>
+            <image-slot id="ares-hero-photo" src="assets/profile.webp" shape="rect" fit="contain" placeholder="{{ t.photoSlot }}" style="width: 100%; height: 100%; aspect-ratio: {{ photoRatio }}; filter: none; box-shadow: none;"></image-slot>
           </div>
           <div style="display: flex; align-items: center; justify-content: center; gap: 6px; height: 26px; font-family: 'JetBrains Mono', monospace; font-size: clamp(12px, 1.2vw, 14px); color: var(--strong, #dceaf1);">
             <span style="color: var(--accent, #22d3ee);">&lt;</span>
@@ -639,9 +639,9 @@ const COPY = {
 };
 
 const POST_IMGS = [
-  'assets/blog-audit.png', 'assets/blog-priority.png', 'assets/blog-roadmap.png',
-  'assets/blog-stakeholder.png', 'assets/blog-spec.png', 'assets/blog-metrics.png',
-  'assets/blog-eight.png', 'assets/blog-migration.png', 'assets/blog-pricing.png'
+  'assets/blog-audit.webp', 'assets/blog-priority.webp', 'assets/blog-roadmap.webp',
+  'assets/blog-stakeholder.webp', 'assets/blog-spec.webp', 'assets/blog-metrics.webp',
+  'assets/blog-eight.webp', 'assets/blog-migration.webp', 'assets/blog-pricing.webp'
 ];
 
 class Component extends DCLogic {
@@ -935,7 +935,7 @@ class Component extends DCLogic {
       tools: ['Figma', 'Linear', 'Jira', 'Notion', 'Miro', 'Whimsical', 'SQL', 'Visio'],
       heroStats: c.heroStats.map(([n, label]) => ({ n, label })),
       skills: c.skills.map(([name, pct], i) => ({ name, pct, icon: 'https://unpkg.com/lucide-static@0.469.0/icons/' + ['list-ordered', 'file-text', 'users', 'repeat', 'settings-2', 'pen-tool', 'database'][i] + '.svg' })),
-      projects: c.projects.map(([name, when, slot, desc, tags, tools], i) => ({ id: i === 5 ? 'ares-proj-6b' : 'ares-proj-' + (i + 1), src: ['assets/proj-pos.png', 'assets/proj-wed.png', 'assets/proj-kodomo.png', 'assets/proj-finance.png', 'assets/proj-logistics.png', 'assets/nfc-card.png'][i], href: 'Project Detail.dc.html?p=' + (i + 1) + '&lang=' + this.state.lang, name, when, slot, desc, tags, tools, mobile: /App$/.test(name), wide: !/App$/.test(name) })),
+      projects: c.projects.map(([name, when, slot, desc, tags, tools], i) => ({ id: i === 5 ? 'ares-proj-6b' : 'ares-proj-' + (i + 1), src: ['assets/proj-pos.webp', 'assets/proj-wed.webp', 'assets/proj-kodomo.png', 'assets/proj-finance.webp', 'assets/proj-logistics.webp', 'assets/nfc-card.webp'][i], href: 'Project Detail.dc.html?p=' + (i + 1) + '&lang=' + this.state.lang, name, when, slot, desc, tags, tools, mobile: /App$/.test(name), wide: !/App$/.test(name) })),
       // Flash fires when the running pulse reaches this circle: the dash head
       // covers 1320 units in 3.4s, and circle i sits at x = 100 + i*200.
       process: c.process.map(([n, title, desc], i) => ({ n, title, desc, zap: (3.4 * (100 + i * 200) / 1320).toFixed(3) + 's', icon: 'https://unpkg.com/lucide-static@0.469.0/icons/' + ['search','map','list-checks','users','rocket','trending-up'][i] + '.svg' })),
