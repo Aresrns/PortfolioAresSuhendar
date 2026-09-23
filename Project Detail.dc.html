@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./image-slot.js"></script>
+<title>Proyek — Ares Suhendar</title>
+<meta name="description" content="Detail pengerjaan tiap proyek dari sisi Product Owner: konteks masalah, peran, cara kerja, dan hasilnya." />
+<meta name="author" content="Ares Suhendar" />
+<meta name="theme-color" content="#04101a" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Ares Suhendar" />
+<meta property="og:title" content="Proyek — Ares Suhendar" />
+<meta property="og:description" content="Detail pengerjaan tiap proyek dari sisi Product Owner: konteks masalah, peran, cara kerja, dan hasilnya." />
+<meta property="og:image" content="assets/share-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Proyek — Ares Suhendar" />
+<meta name="twitter:description" content="Detail pengerjaan tiap proyek dari sisi Product Owner: konteks masalah, peran, cara kerja, dan hasilnya." />
+<meta name="twitter:image" content="assets/share-card.png" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #04101a; }
+  * { box-sizing: border-box; }
+  a { color: #22d3ee; text-decoration: none; }
+  a:hover { opacity: 0.82; }
+  image-slot::part(frame) { background: transparent; }
+  image-slot::part(ring) { display: none; }
+</style>
+</helmet>
+<div style="{{ rootStyle }}" hint-placeholder-val="{{ true }}">
+<div style="background: var(--page, #04101a); color: var(--body, #93a8b6); font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 13px; line-height: 1.5; min-height: 100vh;">
+
+  <div style="position: sticky; top: 0; z-index: 20; background: var(--nav, rgba(4,16,26,0.82)); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line, rgba(34,211,238,0.12));">
+    <div style="max-width: 880px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; gap: 14px;">
+      <a href="Portfolio Ares Suhendar.dc.html" style="display: inline-flex; align-items: center; gap: 7px; color: var(--strong, #dceaf1); font-size: 12.5px; white-space: nowrap;">
+        <span style="flex: none; width: 14px; height: 14px; display: block; background: currentColor; -webkit-mask: url(https://unpkg.com/lucide-static@0.469.0/icons/arrow-left.svg) center / contain no-repeat; mask: url(https://unpkg.com/lucide-static@0.469.0/icons/arrow-left.svg) center / contain no-repeat;"></span>{{ ui.back }}
+      </a>
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+        <div style="display: flex; align-items: center; padding: 2px; border-radius: 999px; border: 1px solid var(--line, rgba(255,255,255,0.12)); background: var(--surface2, rgba(255,255,255,0.03));">
+          <button onClick="{{ setId }}" style="{{ idBtnStyle }}">ID</button>
+          <button onClick="{{ setEn }}" style="{{ enBtnStyle }}">EN</button>
+        </div>
+        <button onClick="{{ toggleTheme }}" style="width: 30px; height: 30px; border-radius: 999px; cursor: pointer; border: 1px solid var(--line, rgba(255,255,255,0.12)); background: var(--surface2, rgba(255,255,255,0.03)); color: var(--accent, #22d3ee); font-size: 13px; display: flex; align-items: center; justify-content: center;">{{ themeIcon }}</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 880px; margin: 0 auto; padding: 26px 20px 48px; display: flex; flex-direction: column; gap: 22px;">
+
+    <sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--accent, #22d3ee);">2021 — 2026</span>
+          <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 4vw, 36px); font-weight: 700; line-height: 1.1; letter-spacing: -0.025em; color: var(--ink, #f2f8fb);">{{ ui.crumb }}</h1>
+        </div>
+        <sc-for list="{{ all }}" as="it" hint-placeholder-count="6">
+          <a href="{{ it.href }}" style="border-radius: 14px; border: 1px solid var(--line, rgba(255,255,255,0.07)); background: var(--surface, rgba(8,23,34,0.7)); padding: 14px; display: grid; grid-template-columns: {{ listCols }}; gap: 16px; align-items: center; color: inherit; transition: border-color 0.25s ease, transform 0.25s ease;" style-hover="border-color: var(--accentBd, rgba(34,211,238,0.45)); transform: translateY(-2px);">
+            <span style="display: block; height: 108px; border-radius: 10px; overflow: hidden; background: var(--surface2, #071824);">
+              <image-slot id="{{ it.slotId }}" src="{{ it.src }}" shape="rect" fit="cover" placeholder="" style="width: 100%; height: 100%;"></image-slot>
+            </span>
+            <span style="display: flex; flex-direction: column; gap: 6px; min-width: 0;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--muted, #6d8797);">{{ it.when }}</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink, #eef6fa);">{{ it.name }}</span>
+              <span style="font-size: 12.5px; line-height: 1.6; color: var(--body, #93a8b6); text-wrap: pretty;">{{ it.desc }}</span>
+              <span style="display: flex; flex-wrap: wrap; gap: 5px; padding-top: 2px;">
+                <sc-for list="{{ it.tags }}" as="tg" hint-placeholder-count="3">
+                  <span style="padding: 3px 8px; border-radius: 5px; white-space: nowrap; background: var(--accentSoft, rgba(34,211,238,0.1)); font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--accent, #7fdbe8);">{{ tg }}</span>
+                </sc-for>
+              </span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--muted, #6d8797);">
+        <span>{{ ui.crumb }}</span>
+        <span>/</span>
+        <span style="color: var(--accent, #22d3ee);">{{ p.when }}</span>
+      </div>
+      <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 4.4vw, 40px); font-weight: 700; line-height: 1.08; letter-spacing: -0.025em; color: var(--ink, #f2f8fb); text-wrap: pretty;">{{ p.name }}</h1>
+      <p style="margin: 0; max-width: 620px; font-size: 14px; line-height: 1.7; color: var(--body, #93a8b6); text-wrap: pretty;">{{ p.desc }}</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+        <sc-for list="{{ p.tags }}" as="tag" hint-placeholder-count="3">
+          <span style="padding: 4px 9px; border-radius: 6px; white-space: nowrap; background: var(--accentSoft, rgba(34,211,238,0.1)); font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent, #7fdbe8);">{{ tag }}</span>
+        </sc-for>
+        <sc-for list="{{ p.tools }}" as="tl" hint-placeholder-count="3">
+          <span style="padding: 4px 9px; border-radius: 6px; white-space: nowrap; border: 1px solid var(--line, rgba(255,255,255,0.1)); font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--strong, #9fb5c2);">{{ tl }}</span>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="height: 260px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line, rgba(255,255,255,0.08)); background: var(--surface2, #071824);">
+      <image-slot id="{{ p.slotId }}" src="{{ p.src }}" shape="rect" fit="contain" placeholder="{{ p.slot }}" style="width: 100%; height: 100%;"></image-slot>
+    </div>
+
+    <div style="display: grid; grid-template-columns: {{ cols }}; gap: 14px;">
+      <div style="border-radius: 14px; border: 1px solid var(--line, rgba(255,255,255,0.07)); background: var(--surface, rgba(8,23,34,0.7)); padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.07em; color: var(--accent, #22d3ee);">{{ p.lbl0 }}</span>
+        <p style="margin: 0; font-size: 13.5px; line-height: 1.75; color: var(--body, #93a8b6); text-wrap: pretty;">{{ p.problem }}</p>
+      </div>
+      <div style="border-radius: 14px; border: 1px solid var(--line, rgba(255,255,255,0.07)); background: var(--surface, rgba(8,23,34,0.7)); padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.07em; color: var(--accent, #22d3ee);">{{ p.lbl1 }}</span>
+        <p style="margin: 0; font-size: 13.5px; line-height: 1.75; color: var(--strong, #dceaf1); text-wrap: pretty;">{{ p.role }}</p>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.07em; color: var(--accent, #22d3ee);">{{ p.lbl2 }}</span>
+      <sc-for list="{{ p.steps }}" as="st" hint-placeholder-count="3">
+        <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; align-items: start; padding-bottom: 12px; border-bottom: 1px solid var(--line, rgba(255,255,255,0.06));">
+          <span style="width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--accentBd, rgba(34,211,238,0.32)); background: var(--surface2, #071824); font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent, #22d3ee);">{{ st.n }}</span>
+          <span style="padding-top: 3px; font-size: 13.5px; line-height: 1.7; color: var(--body, #93a8b6); text-wrap: pretty;">{{ st.text }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="border-radius: 14px; border: 1px solid var(--accentBd, rgba(34,211,238,0.22)); background: var(--surface, rgba(9,32,45,0.85)); padding: 20px 22px; display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.07em; color: var(--accent, #22d3ee);">{{ p.lbl3 }}</span>
+      <p style="margin: 0; font-size: 14px; line-height: 1.75; color: var(--strong, #dceaf1); text-wrap: pretty;">{{ p.impact }}</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: {{ cols }}; gap: 10px; padding-top: 4px;">
+      <a href="{{ prev.href }}" style="border-radius: 12px; border: 1px solid var(--line, rgba(255,255,255,0.07)); background: var(--surface2, rgba(5,18,28,0.8)); padding: 13px 15px; display: flex; align-items: center; gap: 10px; color: inherit; transition: border-color 0.25s ease;" style-hover="border-color: var(--accentBd, rgba(34,211,238,0.45));">
+        <span style="flex: none; width: 15px; height: 15px; display: block; background: currentColor; color: var(--accent, #22d3ee); -webkit-mask: url(https://unpkg.com/lucide-static@0.469.0/icons/arrow-left.svg) center / contain no-repeat; mask: url(https://unpkg.com/lucide-static@0.469.0/icons/arrow-left.svg) center / contain no-repeat;"></span>
+        <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.07em; color: var(--muted, #6d8797);">PREV</span>
+          <span style="font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; color: var(--ink, #eef6fa);">{{ prev.name }}</span>
+        </span>
+      </a>
+      <a href="{{ next.href }}" style="border-radius: 12px; border: 1px solid var(--line, rgba(255,255,255,0.07)); background: var(--surface2, rgba(5,18,28,0.8)); padding: 13px 15px; display: flex; align-items: center; gap: 10px; justify-content: flex-end; text-align: right; color: inherit; transition: border-color 0.25s ease;" style-hover="border-color: var(--accentBd, rgba(34,211,238,0.45));">
+        <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.07em; color: var(--muted, #6d8797);">NEXT</span>
+          <span style="font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; color: var(--ink, #eef6fa);">{{ next.name }}</span>
+        </span>
+        <span style="flex: none; width: 15px; height: 15px; display: block; background: currentColor; color: var(--accent, #22d3ee); -webkit-mask: url(https://unpkg.com/lucide-static@0.469.0/icons/arrow-right.svg) center / contain no-repeat; mask: url(https://unpkg.com/lucide-static@0.469.0/icons/arrow-right.svg) center / contain no-repeat;"></span>
+      </a>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 4px;">
+      <h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink, #eef6fa);">{{ ui.other }}</h2>
+      <div style="display: grid; grid-template-columns: {{ otherCols }}; gap: 10px;">
+        <sc-for list="{{ others }}" as="o" hint-placeholder-count="3">
+          <a href="{{ o.href }}" style="border-radius: 12px; border: 1px solid var(--line, rgba(255,255,255,0.07)); background: var(--surface2, rgba(5,18,28,0.8)); padding: 13px 14px; display: flex; flex-direction: column; gap: 5px; color: inherit; transition: border-color 0.25s ease, transform 0.25s ease;" style-hover="border-color: var(--accentBd, rgba(34,211,238,0.45)); transform: translateY(-2px);">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--muted, #6d8797);">{{ o.when }}</span>
+            <span style="font-family: 'Space Grotesk', sans-serif; font-size: 13.5px; font-weight: 600; line-height: 1.25; color: var(--ink, #eef6fa);">{{ o.name }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const THEMES = {
+  dark: {
+    '--page': 'radial-gradient(900px 500px at 78% -6%, rgba(34,211,238,0.16), transparent 60%), #04101a',
+    '--nav': 'rgba(4,16,26,0.82)',
+    '--surface': 'rgba(8,23,34,0.78)',
+    '--surface2': 'rgba(5,18,28,0.8)',
+    '--line': 'rgba(255,255,255,0.08)',
+    '--ink': '#f2f8fb',
+    '--strong': '#dceaf1',
+    '--body': '#93a8b6',
+    '--muted': '#8ba2b1',
+    '--accent': '#22d3ee',
+    '--accentSoft': 'rgba(34,211,238,0.1)',
+    '--accentBd': 'rgba(34,211,238,0.3)',
+    '--btnBg': 'linear-gradient(100deg, #22d3ee, #0ea5b7)',
+    '--btnInk': '#04101a'
+  },
+  light: {
+    '--page': 'radial-gradient(900px 500px at 78% -6%, rgba(14,165,183,0.12), transparent 60%), #f2f6f8',
+    '--nav': 'rgba(242,246,248,0.85)',
+    '--surface': '#ffffff',
+    '--surface2': '#f5f9fb',
+    '--line': 'rgba(6,32,44,0.12)',
+    '--ink': '#062330',
+    '--strong': '#12384a',
+    '--body': '#4a6272',
+    '--muted': '#5c7484',
+    '--accent': '#0b7f92',
+    '--accentSoft': 'rgba(11,127,146,0.09)',
+    '--accentBd': 'rgba(11,127,146,0.28)',
+    '--btnBg': 'linear-gradient(100deg, #0e93a8, #0b6f80)',
+    '--btnInk': '#ffffff'
+  }
+};
+
+class Component extends DCLogic {
+  state = { theme: 'dark', lang: 'id', data: null, ui: null, index: 0, bp: 'lg', list: false };
+
+  componentDidMount() {
+    const q = new URLSearchParams(location.search);
+    const n = parseInt(q.get('p') || '1', 10);
+    if (q.get('list') === '1') this.setState({ list: true });
+    let lang = q.get('lang');
+    let theme = null;
+    try {
+      theme = localStorage.getItem('ares-theme');
+      if (!lang) lang = localStorage.getItem('ares-lang');
+    } catch (e) {}
+    const next = { index: isNaN(n) ? 0 : Math.max(0, Math.min(5, n - 1)) };
+    if (lang === 'id' || lang === 'en') next.lang = lang;
+    if (theme === 'dark' || theme === 'light') next.theme = theme;
+    this.setState(next);
+    import('./projects-data.js').then((m) => this.setState({ data: m.DATA, ui: m.UI }));
+    this.measure();
+    this.onResize = () => this.measure();
+    window.addEventListener('resize', this.onResize);
+  }
+
+  componentWillUnmount() {
+    if (this.onResize) window.removeEventListener('resize', this.onResize);
+    clearTimeout(this.chromeTimer);
+  }
+
+  // Slot frame/ring are hidden by image-slot::part() rules in the helmet.
+
+  componentDidUpdate() {
+    const L = this.state.data && this.state.data[this.state.lang];
+    const r = L && L.projects[this.state.index];
+    document.title = this.state.list ? 'Projects — Ares Suhendar' : (r ? r[0] + ' — Ares Suhendar' : 'Ares Suhendar');
+  }
+
+  measure() {
+    const bp = window.innerWidth < 700 ? 'sm' : 'lg';
+    if (bp !== this.state.bp) this.setState({ bp: bp });
+  }
+
+  set(key, val) {
+    this.setState({ [key]: val });
+    try { localStorage.setItem(key === 'theme' ? 'ares-theme' : 'ares-lang', val); } catch (e) {}
+  }
+
+  renderVals() {
+    const lang = this.state.lang;
+    const dark = this.state.theme === 'dark';
+    const langBtn = (on) => ({
+      padding: '3px 9px', borderRadius: '999px', border: 'none', cursor: 'pointer',
+      fontFamily: "'JetBrains Mono', monospace", fontSize: '10.5px', letterSpacing: '0.04em',
+      background: on ? 'var(--btnBg)' : 'transparent',
+      color: on ? 'var(--btnInk)' : 'var(--muted)'
+    });
+    const base = {
+      rootStyle: THEMES[this.state.theme],
+      themeIcon: dark ? '\u2600' : '\u263e',
+      toggleTheme: () => this.set('theme', dark ? 'light' : 'dark'),
+      setId: () => this.set('lang', 'id'),
+      setEn: () => this.set('lang', 'en'),
+      idBtnStyle: langBtn(lang === 'id'),
+      enBtnStyle: langBtn(lang === 'en'),
+      cols: this.state.bp === 'sm' ? '1fr' : 'repeat(2, minmax(0, 1fr))',
+      otherCols: this.state.bp === 'sm' ? '1fr' : 'repeat(3, minmax(0, 1fr))',
+      isList: this.state.list,
+      listCols: this.state.bp === 'sm' ? '1fr' : '180px minmax(0, 1fr)',
+      isDetail: !this.state.list
+    };
+    const d = this.state.data;
+    const u = this.state.ui;
+    // Pre-data frame: seed the slot id and a stable src from the URL param so the
+    // first paint has no unresolved holes and no id-less <image-slot>.
+    if (!d || !u) {
+      const i0 = this.state.index;
+      return Object.assign(base, {
+        ui: { back: '', crumb: '', other: '' },
+        p: {
+          name: '', when: '', desc: '', slot: '', tags: [], tools: [], steps: [],
+          lbl0: '', lbl1: '', lbl2: '', lbl3: '', problem: '', role: '', impact: '',
+          slotId: i0 === 5 ? 'ares-proj-6b' : 'ares-proj-' + (i0 + 1),
+          src: ['assets/proj-pos.png', 'assets/proj-wed.png', 'assets/proj-kodomo.png', 'assets/proj-finance.png', 'assets/proj-logistics.png', 'assets/nfc-card.png'][i0]
+        },
+        others: [],
+        all: [],
+        prev: { name: '', href: '#' },
+        next: { name: '', href: '#' }
+      });
+    }
+
+    const L = d[lang];
+    const i = this.state.index;
+    const row = L.projects[i] || [];
+    const det = L.detail[i] || [];
+    const labels = L.labels || [];
+    return Object.assign(base, {
+      ui: u[lang],
+      p: {
+        name: row[0], when: row[1], slot: row[2], desc: row[3],
+        tags: row[4] || [], tools: row[5] || [],
+        slotId: i === 5 ? 'ares-proj-6b' : 'ares-proj-' + (i + 1),
+        src: ['assets/proj-pos.png', 'assets/proj-wed.png', 'assets/proj-kodomo.png', 'assets/proj-finance.png', 'assets/proj-logistics.png', 'assets/nfc-card.png'][i],
+        lbl0: labels[0], lbl1: labels[1], lbl2: labels[2], lbl3: labels[3],
+        problem: det[0], role: det[1], impact: det[3],
+        steps: (det[2] || []).map((t, k) => ({ n: '0' + (k + 1), text: t }))
+      },
+      others: L.projects
+        .map((r, k) => ({ name: r[0], when: r[1], href: 'Project Detail.dc.html?p=' + (k + 1) + '&lang=' + lang, k: k }))
+        .filter((o) => o.k !== i)
+        .slice(0, 3),
+      all: L.projects.map((r, k) => ({
+        name: r[0], when: r[1], desc: r[3], tags: r[4] || [],
+        href: 'Project Detail.dc.html?p=' + (k + 1) + '&lang=' + lang,
+        slotId: k === 5 ? 'ares-proj-6b' : 'ares-proj-' + (k + 1),
+        src: ['assets/proj-pos.png', 'assets/proj-wed.png', 'assets/proj-kodomo.png', 'assets/proj-finance.png', 'assets/proj-logistics.png', 'assets/nfc-card.png'][k]
+      })),
+      prev: (() => { const k = (i + L.projects.length - 1) % L.projects.length; return { name: L.projects[k][0], href: 'Project Detail.dc.html?p=' + (k + 1) + '&lang=' + lang }; })(),
+      next: (() => { const k = (i + 1) % L.projects.length; return { name: L.projects[k][0], href: 'Project Detail.dc.html?p=' + (k + 1) + '&lang=' + lang }; })()
+    });
+  }
+}
+</script>
+</body>
+</html>
