@@ -132,6 +132,25 @@
       <p style="margin: 0; font-size: 14px; line-height: 1.75; color: var(--strong, #dceaf1); text-wrap: pretty;">{{ p.impact }}</p>
     </div>
 
+<sc-if value="{{ hasGallery }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.07em; color: var(--accent, #22d3ee);">{{ ui.galleryLbl }}</span>
+<sc-for list="{{ gallery }}" as="g" hint-placeholder-count="3">
+<figure style="margin: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line, rgba(255,255,255,0.08)); background: var(--surface2, #071824);">
+<img src="{{ g.src }}" alt="{{ g.cap }}" loading="lazy" style="display: block; width: 100%; height: auto;" />
+<figcaption style="padding: 10px 14px; font-size: 12.5px; line-height: 1.6; color: var(--body, #93a8b6);">{{ g.cap }}</figcaption>
+</figure>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasRepo }}" hint-placeholder-val="{{ false }}">
+<a href="{{ repo }}" target="_blank" rel="noopener" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: var(--btnBg, #22d3ee); color: var(--btnInk, #04101a); font-size: 13px; font-weight: 600;">
+<span style="flex: none; width: 15px; height: 15px; display: block; background: currentColor; -webkit-mask: url(https://unpkg.com/lucide-static@0.469.0/icons/github.svg) center / contain no-repeat; mask: url(https://unpkg.com/lucide-static@0.469.0/icons/github.svg) center / contain no-repeat;"></span>{{ ui.repoBtn }}
+</a>
+</sc-if>
+
+
     <div style="display: grid; grid-template-columns: {{ cols }}; gap: 10px; padding-top: 4px;">
       <a href="{{ prev.href }}" style="border-radius: 12px; border: 1px solid var(--line, rgba(255,255,255,0.07)); background: var(--surface2, rgba(5,18,28,0.8)); padding: 13px 15px; display: flex; align-items: center; gap: 10px; color: inherit; transition: border-color 0.25s ease;" style-hover="border-color: var(--accentBd, rgba(34,211,238,0.45));">
         <span style="flex: none; width: 15px; height: 15px; display: block; background: currentColor; color: var(--accent, #22d3ee); -webkit-mask: url(https://unpkg.com/lucide-static@0.469.0/icons/arrow-left.svg) center / contain no-repeat; mask: url(https://unpkg.com/lucide-static@0.469.0/icons/arrow-left.svg) center / contain no-repeat;"></span>
@@ -215,11 +234,11 @@ class Component extends DCLogic {
       theme = localStorage.getItem('ares-theme');
       if (!lang) lang = localStorage.getItem('ares-lang');
     } catch (e) {}
-    const next = { index: isNaN(n) ? 0 : Math.max(0, Math.min(5, n - 1)) };
+    const next = { index: isNaN(n) ? 0 : Math.max(0, Math.min(6, n - 1)) };
     if (lang === 'id' || lang === 'en') next.lang = lang;
     if (theme === 'dark' || theme === 'light') next.theme = theme;
     this.setState(next);
-    import('./projects-data.js').then((m) => this.setState({ data: m.DATA, ui: m.UI }));
+    import('./projects-data.js').then((m) => this.setState({ data: m.DATA, ui: m.UI, extras: m.EXTRAS || {} }));
     this.measure();
     this.onResize = () => this.measure();
     window.addEventListener('resize', this.onResize);
@@ -278,12 +297,13 @@ class Component extends DCLogic {
     if (!d || !u) {
       const i0 = this.state.index;
       return Object.assign(base, {
-        ui: { back: '', crumb: '', other: '' },
+        ui: { back: '', crumb: '', other: '', repoBtn: '', galleryLbl: '' },
+hasGallery: false, gallery: [], hasRepo: false, repo: '#',
         p: {
           name: '', when: '', desc: '', slot: '', tags: [], tools: [], steps: [],
           lbl0: '', lbl1: '', lbl2: '', lbl3: '', problem: '', role: '', impact: '',
-          slotId: i0 === 5 ? 'ares-proj-6b' : 'ares-proj-' + (i0 + 1),
-          src: ['assets/proj-pos.webp', 'assets/proj-wed.webp', 'assets/proj-kodomo.png', 'assets/proj-finance.webp', 'assets/proj-logistics.webp', 'assets/nfc-card.webp'][i0]
+          slotId: i0 === 5 ? 'ares-proj-6b' : i0 === 6 ? 'ares-proj-hris' : 'ares-proj-' + (i0 + 1),
+          src: ['assets/proj-pos.webp', 'assets/proj-wed.webp', 'assets/proj-kodomo.png', 'assets/proj-finance.webp', 'assets/proj-logistics.webp', 'assets/nfc-card.webp', 'assets/proj-hris.webp'][i0]
         },
         others: [],
         all: [],
@@ -297,13 +317,18 @@ class Component extends DCLogic {
     const row = L.projects[i] || [];
     const det = L.detail[i] || [];
     const labels = L.labels || [];
+const ex = (this.state.extras || {})[i];
     return Object.assign(base, {
       ui: u[lang],
+hasGallery: !!(ex && ex.gallery && ex.gallery.length),
+gallery: ex && ex.gallery ? ex.gallery.map((g) => ({ src: g.src, cap: g[lang] })) : [],
+hasRepo: !!(ex && ex.repo),
+repo: ex && ex.repo ? ex.repo : '#',
       p: {
         name: row[0], when: row[1], slot: row[2], desc: row[3],
         tags: row[4] || [], tools: row[5] || [],
-        slotId: i === 5 ? 'ares-proj-6b' : 'ares-proj-' + (i + 1),
-        src: ['assets/proj-pos.webp', 'assets/proj-wed.webp', 'assets/proj-kodomo.png', 'assets/proj-finance.webp', 'assets/proj-logistics.webp', 'assets/nfc-card.webp'][i],
+        slotId: i === 5 ? 'ares-proj-6b' : i === 6 ? 'ares-proj-hris' : 'ares-proj-' + (i + 1),
+        src: ['assets/proj-pos.webp', 'assets/proj-wed.webp', 'assets/proj-kodomo.png', 'assets/proj-finance.webp', 'assets/proj-logistics.webp', 'assets/nfc-card.webp', 'assets/proj-hris.webp'][i],
         lbl0: labels[0], lbl1: labels[1], lbl2: labels[2], lbl3: labels[3],
         problem: det[0], role: det[1], impact: det[3],
         steps: (det[2] || []).map((t, k) => ({ n: '0' + (k + 1), text: t }))
@@ -315,8 +340,8 @@ class Component extends DCLogic {
       all: L.projects.map((r, k) => ({
         name: r[0], when: r[1], desc: r[3], tags: r[4] || [],
         href: 'Project Detail.dc.html?p=' + (k + 1) + '&lang=' + lang,
-        slotId: k === 5 ? 'ares-proj-6b' : 'ares-proj-' + (k + 1),
-        src: ['assets/proj-pos.webp', 'assets/proj-wed.webp', 'assets/proj-kodomo.png', 'assets/proj-finance.webp', 'assets/proj-logistics.webp', 'assets/nfc-card.webp'][k]
+        slotId: k === 5 ? 'ares-proj-6b' : k === 6 ? 'ares-proj-hris' : 'ares-proj-' + (k + 1),
+        src: ['assets/proj-pos.webp', 'assets/proj-wed.webp', 'assets/proj-kodomo.png', 'assets/proj-finance.webp', 'assets/proj-logistics.webp', 'assets/nfc-card.webp', 'assets/proj-hris.webp'][k]
       })),
       prev: (() => { const k = (i + L.projects.length - 1) % L.projects.length; return { name: L.projects[k][0], href: 'Project Detail.dc.html?p=' + (k + 1) + '&lang=' + lang }; })(),
       next: (() => { const k = (i + 1) % L.projects.length; return { name: L.projects[k][0], href: 'Project Detail.dc.html?p=' + (k + 1) + '&lang=' + lang }; })()
