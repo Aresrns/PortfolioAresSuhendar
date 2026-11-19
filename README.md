@@ -19,9 +19,9 @@ pilih branch dan folder root.
 ```
 index.html                        pengalih ke halaman utama
 Portfolio Ares Suhendar.dc.html   halaman utama
-Project Detail.dc.html            detail proyek (?p=1..6) dan daftar proyek (?list=1)
+Project Detail.dc.html            detail proyek (?p=1..8) dan daftar proyek (?list=1)
 Post Detail.dc.html               detail tulisan (?a=1..9)
-projects-data.js                  teks 6 proyek, ID + EN
+projects-data.js                  teks 8 proyek, ID + EN
 posts-data.js                     teks 9 tulisan, ID + EN
 support.js, image-slot.js         runtime dan komponen gambar
 assets/                           gambar, favicon, kartu berbagi, CV
