@@ -59,5 +59,8 @@ gallery: [
 { src: 'assets/hris-payslip.webp', id: 'Slip gaji di HP. Angkanya baru muncul setelah PIN atau sidik jari.', en: 'Payslip on the phone. No amounts show until you enter a PIN or use your fingerprint.' },
 { src: 'assets/hris-flow.webp', id: 'Alur slip gaji. Tiap langkah punya acceptance criteria yang nanti dicek QA.', en: 'Payslip flow. Each step has acceptance criteria that QA will check.' }
 ]
+},
+7: {
+repo: 'https://github.com/Aresrns/cms-digital-signage-project'
 }
 };
